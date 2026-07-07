@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOMC Supplement Store</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="header">
+    <h1>💊 SOMC Supplement Store</h1>
+    <p>Quality Health Supplements</p>
+</header>
+
+<div class="dashboard">
+
+    <div class="card">
+
+        <img src="images/vitamin-c.jpg" alt="Vitamin C" class="product-image">
+
+        <h3>Vitamin C 1000mg</h3>
+
+        <h2>₦8,500</h2>
+
+        <p>
+            • Supports immunity<br>
+            • Powerful antioxidant<br>
+            • 100 Tablets
+        </p>
+
+        <label>Quantity</label>
+
+        <input type="number" id="qty1" min="1" value="1">
+
+        <button onclick="buyNow('Vitamin C 1000mg',8500,'qty1')">
+            Buy Now
+        </button>
+
+    </div>
+
+    <div class="card">
+
+        <img src="images/zinc.jpg" alt="Zinc" class="product-image">
+
+        <h3>Zinc 50mg</h3>
+
+        <h2>₦6,500</h2>
+
+        <p>
+            • Supports immunity<br>
+            • Healthy skin<br>
+            • 60 Capsules
+        </p>
+
+        <label>Quantity</label>
+
+        <input type="number" id="qty2" min="1" value="1">
+
+        <button onclick="buyNow('Zinc 50mg',6500,'qty2')">
+            Buy Now
+        </button>
+
+    </div>
+
+</div>
+
+<div style="text-align:center;padding:30px;">
+    <button onclick="window.location.href='dashboard.html'">
+        ← Back to Dashboard
+    </button>
+</div>
+
+<script type="module" src="js/store.js"></script>
+
+</body>
+</html>

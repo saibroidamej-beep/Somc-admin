@@ -1,111 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOMC Patient Portal</title>
 
-<title>SOMC Patient Dashboard</title>
-
-<link rel="stylesheet" href="style.css">
-
-<style>
-
-.dashboard{
-width:100%;
-max-width:900px;
-background:#fff;
-border-radius:20px;
-padding:30px;
-box-shadow:0 15px 40px rgba(0,0,0,.2);
-}
-
-.dashboard h1{
-color:#0b5ed7;
-margin-bottom:10px;
-}
-
-.dashboard p{
-font-size:16px;
-color:#555;
-margin-bottom:25px;
-}
-
-.cards{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
-margin-top:20px;
-}
-
-.card-box{
-background:#f4f8ff;
-padding:20px;
-border-radius:15px;
-text-align:center;
-box-shadow:0 5px 15px rgba(0,0,0,.1);
-transition:.3s;
-}
-
-.card-box:hover{
-transform:translateY(-5px);
-}
-
-.card-box h3{
-color:#0b5ed7;
-margin-bottom:10px;
-}
-
-.logout-btn{
-margin-top:30px;
-background:#dc3545;
-color:#fff;
-}
-
-</style>
-
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
+<header class="header">
+    <h1>🏥 SOMC Patient Portal</h1>
+    <p>Smart Online Medical Clinic</p>
+</header>
+
+<section class="welcome">
+    <h2 id="welcomeName">Welcome...</h2>
+<p id="welcomeRole"></p>
+    <p>Your health and learning journey starts here.</p>
+</section>
+
 <div class="dashboard">
 
-<h1>Welcome to SOMC</h1>
+    <a href="profile.html" class="card">
+        <h3>👤 My Profile</h3>
+        <p>View and manage your profile.</p>
+    </a>
 
-<p>
-Smart Online Medical Clinic Patient Portal
-</p>
+    <a href="https://www.somc.com.ng/health-conditions" class="card">
+        <h3>🩺 Health Conditions</h3>
+        <p>Learn about diseases and healthy living.</p>
+    </a>
 
-<div class="cards">
+    <a href="https://www.somc.com.ng/training-courses-with-certificates" class="card">
+        <h3>🎓 Training Courses</h3>
+        <p>Learn and earn certificates.</p>
+    </a>
 
-<div class="card-box">
-<h3>👤 My Profile</h3>
-<p>View and manage your profile.</p>
+    <a href="supplement-store.html" class="card">
+        <h3>💊 Supplement Store</h3>
+        <p>Order quality supplements online.</p>
+    </a>
+
+    <a href="appointments.html" class="card">
+        <h3>📅 Appointments</h3>
+        <p>Book appointments with professionals.</p>
+    </a>
+
+    <a href="consultation.html" class="card">
+        <h3>💬 Online Consultation</h3>
+        <p>Talk with healthcare professionals.</p>
+    </a>
+
+    <a href="certificates.html" class="card">
+        <h3>📜 My Certificates</h3>
+        <p>View your certificates.</p>
+    </a>
+
+    <a href="settings.html" class="card">
+        <h3>⚙️ Settings</h3>
+        <p>Manage your account.</p>
+    </a>
+
+    <a href="#" id="logoutBtn" class="card logout">
+        <h3>🚪 Logout</h3>
+        <p>Sign out safely.</p>
+    </a>
+
 </div>
 
-<div class="card-box">
-<h3>📅 Appointments</h3>
-<p>Book and manage appointments.</p>
-</div>
+<footer>
+    <p>© 2026 Smart Online Medical Clinic (SOMC)</p>
+</footer>
 
-<div class="card-box">
-<h3>💊 Medical Records</h3>
-<p>Access your medical records.</p>
-</div>
-
-<div class="card-box">
-<h3>💬 Online Consultation</h3>
-<p>Talk to healthcare professionals.</p>
-</div>
-
-</div>
-
-<button id="logoutBtn" class="logout-btn">
-Logout
-</button>
-
-</div>
-
-<script type="module" src="dashboard.js"></script>
+<script type="module" src="js/dashboard.js"></script>
 
 </body>
 </html>
