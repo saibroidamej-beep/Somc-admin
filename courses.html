@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOMC Course Management</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="header">
+    <h1>🎓 Course Management</h1>
+    <p>Create and manage training courses</p>
+</header>
+
+<div class="login-card">
+
+<form id="courseForm">
+
+<div class="input-group">
+<label>Course Title</label>
+<input type="text" id="courseTitle" required>
+</div>
+
+<div class="input-group">
+<label>Instructor</label>
+<input type="text" id="instructor" required>
+</div>
+
+<div class="input-group">
+<label>Description</label>
+<textarea id="description" rows="5"></textarea>
+</div>
+
+<div class="input-group">
+<label>Course Image URL</label>
+<input type="text" id="courseImage">
+</div>
+
+<button type="submit">
+Save Course
+</button>
+
+</form>
+
+</div>
+
+<div class="dashboard" id="coursesList">
+
+</div>
+
+<script type="module" src="js/courses.js"></script>
+
+</body>
+</html>
