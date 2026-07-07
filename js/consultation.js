@@ -1,10 +1,9 @@
 import { db } from "./firebase.js";
-
 import {
   collection,
   addDoc,
   serverTimestamp
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 const submitBtn = document.getElementById("submitBtn");
 const status = document.getElementById("status");
@@ -20,22 +19,17 @@ submitBtn.addEventListener("click", async () => {
     const duration = document.getElementById("duration").value.trim();
     const type = document.getElementById("type").value;
 
-    if (
-        !name ||
-        !age ||
-        !gender ||
-        !phone ||
-        !complaint ||
-        !symptoms
-    ) {
+    if (!name || !age || !gender || !phone || !complaint || !symptoms) {
         status.innerHTML = "❌ Please complete all required fields.";
         return;
     }
 
+    submitBtn.disabled = true;
+    status.innerHTML = "Submitting consultation...";
+
     try {
 
         await addDoc(collection(db, "consultations"), {
-
             name,
             age,
             gender,
@@ -44,11 +38,8 @@ submitBtn.addEventListener("click", async () => {
             symptoms,
             duration,
             type,
-
             status: "Pending",
-
             createdAt: serverTimestamp()
-
         });
 
         status.innerHTML = "✅ Consultation submitted successfully.";
@@ -60,13 +51,18 @@ submitBtn.addEventListener("click", async () => {
         document.getElementById("complaint").value = "";
         document.getElementById("symptoms").value = "";
         document.getElementById("duration").value = "";
-        document.getElementById("type").value = "Chat";
+        document.getElementById("type").selectedIndex = 0;
 
     } catch (error) {
 
-        console.error(error);
+        console.error("Firebase Error:", error);
 
-        status.innerHTML = "❌ Failed to submit consultation.";
+        status.innerHTML =
+            "❌ Error: " + error.code + "<br>" + error.message;
+
+    } finally {
+
+        submitBtn.disabled = false;
 
     }
 
