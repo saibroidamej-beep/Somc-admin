@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SOMC Admin Consultations</title>
+
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f4f6f9;
+}
+
+header{
+    background:#0b8f6a;
+    color:white;
+    padding:20px;
+    text-align:center;
+}
+
+.container{
+    max-width:1200px;
+    margin:30px auto;
+    padding:20px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    margin-bottom:20px;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+}
+
+.card h3{
+    margin-top:0;
+    color:#0b8f6a;
+}
+
+.status{
+    display:inline-block;
+    background:#ffc107;
+    color:#000;
+    padding:5px 12px;
+    border-radius:20px;
+    font-size:14px;
+    margin-top:10px;
+}
+
+.empty{
+    text-align:center;
+    color:#777;
+    margin-top:50px;
+}
+</style>
+
+</head>
+
+<body>
+
+<header>
+<h1>💬 Consultation Requests</h1>
+<p>Doctor Dashboard</p>
+</header>
+
+<div class="container">
+
+<div id="consultationList">
+
+<div class="empty">
+No consultation requests yet.
+</div>
+
+</div>
+
+</div>
+
+<script type="module" src="js/admin-consultations.js"></script>
+
+</body>
+</html>
