@@ -1,60 +1,71 @@
 import { db } from "./firebase.js";
 
 import {
-  collection,
-  query,
-  orderBy,
-  onSnapshot
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
+    collection,
+    query,
+    orderBy,
+    onSnapshot
+} from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
 const consultationList = document.getElementById("consultationList");
 
+const consultationsRef = collection(db, "consultations");
+
 const q = query(
-  collection(db, "consultations"),
-  orderBy("createdAt", "desc")
+    consultationsRef,
+    orderBy("createdAt", "desc")
 );
 
 onSnapshot(q, (snapshot) => {
 
-  if (snapshot.empty) {
-    consultationList.innerHTML = `
-      <div class="empty">
-        No consultation requests yet.
-      </div>
-    `;
-    return;
-  }
+    consultationList.innerHTML = "";
 
-  consultationList.innerHTML = "";
+    if (snapshot.empty) {
 
-  snapshot.forEach((doc) => {
+        consultationList.innerHTML =
+        "<h2>No consultation requests yet.</h2>";
 
-    const data = doc.data();
+        return;
 
-    consultationList.innerHTML += `
-      <div class="card">
+    }
 
-        <h3>👤 ${data.name}</h3>
+    snapshot.forEach((doc) => {
 
-        <p><strong>Age:</strong> ${data.age}</p>
+        const data = doc.data();
 
-        <p><strong>Gender:</strong> ${data.gender}</p>
+        consultationList.innerHTML += `
 
-        <p><strong>Phone:</strong> ${data.phone}</p>
+        <div class="card">
 
-        <p><strong>Main Complaint:</strong> ${data.complaint}</p>
+            <h3>👤 ${data.name}</h3>
 
-        <p><strong>Symptoms:</strong> ${data.symptoms}</p>
+            <p><b>Phone:</b> ${data.phone}</p>
 
-        <p><strong>Duration:</strong> ${data.duration}</p>
+            <p><b>Complaint:</b> ${data.complaint}</p>
 
-        <p><strong>Consultation Type:</strong> ${data.type}</p>
+            <p><b>Symptoms:</b> ${data.symptoms}</p>
 
-        <span class="status">${data.status}</span>
+            <p><b>Duration:</b> ${data.duration}</p>
 
-      </div>
-    `;
+            <p><b>Consultation:</b> ${data.type}</p>
 
-  });
+            <p><b>Status:</b> ${data.status}</p>
+
+            <button onclick="location.href='admin-chat.html?id=${doc.id}'">
+                💬 Open Chat
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+}, (error) => {
+
+    console.error(error);
+
+    consultationList.innerHTML =
+    "<h2 style='color:red'>" + error.message + "</h2>";
 
 });
