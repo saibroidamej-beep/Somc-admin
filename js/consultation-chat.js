@@ -1,27 +1,48 @@
 import { db } from "./firebase.js";
 
 import {
-  collection,
-  addDoc,
-  query,
-  orderBy,
-  onSnapshot,
-  serverTimestamp
+    collection,
+    addDoc,
+    query,
+    orderBy,
+    onSnapshot,
+    serverTimestamp
 } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js";
 
-const consultationId = "demo-chat";
+// Get consultation ID from URL
+const params = new URLSearchParams(window.location.search);
+const consultationId = params.get("id");
 
 const chatBox = document.getElementById("chatBox");
 const sendBtn = document.getElementById("sendBtn");
 const messageInput = document.getElementById("message");
 
-const messagesRef = collection(db, "consultationChats", consultationId, "messages");
+// Check if consultation ID exists
+if (!consultationId) {
 
-const q = query(messagesRef, orderBy("timestamp"));
+    chatBox.innerHTML = "<h2>No consultation found.</h2>";
+
+    throw new Error("Missing consultation ID");
+
+}
+
+const messagesRef = collection(
+    db,
+    "consultationChats",
+    consultationId,
+    "messages"
+);
+
+const q = query(messagesRef, orderBy("createdAt"));
 
 onSnapshot(q, (snapshot) => {
 
     chatBox.innerHTML = "";
+
+    if (snapshot.empty) {
+        chatBox.innerHTML = "<p>No messages yet.</p>";
+        return;
+    }
 
     snapshot.forEach((doc) => {
 
@@ -31,7 +52,7 @@ onSnapshot(q, (snapshot) => {
 
         div.className = "message " + data.sender;
 
-        div.innerHTML = data.message;
+        div.innerHTML = data.text;
 
         chatBox.appendChild(div);
 
@@ -47,16 +68,26 @@ sendBtn.addEventListener("click", async () => {
 
     if (!text) return;
 
-    await addDoc(messagesRef, {
+    try {
 
-        sender: "patient",
+        await addDoc(messagesRef, {
 
-        message: text,
+            sender: "patient",
 
-        timestamp: serverTimestamp()
+            text: text,
 
-    });
+            createdAt: serverTimestamp()
 
-    messageInput.value = "";
+        });
+
+        messageInput.value = "";
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(error.message);
+
+    }
 
 });
